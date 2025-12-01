@@ -26,7 +26,6 @@ public class ReportsController {
     @GetMapping("/getReport")
     public ResponseEntity<byte[]> getEvents(){
         System.out.println("Obteniendo informe");
-
         try {
             Map<String, Object> parms = new HashMap<>(); // Aquí van los parámetros/filtros (si son necesarios)
             byte[] report = reportService.generarReport("<NOMBREINFORME>", parms); // Indicar nombre del archivo .jasper
