@@ -22,7 +22,6 @@ public class ReportsController {
 
     @Autowired
     private ReportService reportService;
-
     @GetMapping("/getReport")
     public ResponseEntity<byte[]> getEvents(){
         System.out.println("Obteniendo informe");
