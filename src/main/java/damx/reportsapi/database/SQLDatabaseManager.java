@@ -9,7 +9,7 @@ public class SQLDatabaseManager {
     //private static final Dotenv dotenv = Dotenv.load();
     private static final int DB_PORT = 5432;
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "admin";
+    private static final String DB_PASSWORD = "1234";
     private static final String DB_NAME = "postgres";
     private static final String DB_HOST = "localhost";
     /**
