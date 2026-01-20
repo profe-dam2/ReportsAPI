@@ -25,6 +25,29 @@ public class ReportsController {
     @Autowired
     private ReportService reportService;
 
+    // REPORTS PARA STREAMING
+    @GetMapping("/getCategoria/{id_categoria}")
+    public ResponseEntity<byte[]> getCategoria(@PathVariable String id_categoria) {
+        System.out.println("Obteniendo informe series 1");
+        try {
+            int id_cat = Integer.parseInt(id_categoria);
+            Map<String, Object> parms = new HashMap<>(); // Aquí van los parámetros/filtros (si son necesarios)
+            parms.put("id_categoria", id_cat);
+            byte[] report = reportService.generarReport("quesitosDispositivos", parms); // Indicar nombre del archivo .jasper
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.add("Content-Disposition","inline; filename=report.pdf");
+            return new ResponseEntity<>(report, headers, HttpStatus.OK);
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+
     @GetMapping("/getSeries3/{fecha1}/{fecha2}/{titulo}")
     public ResponseEntity<byte[]> getSeries3(@PathVariable Date fecha1,
                                              @PathVariable Date fecha2,
