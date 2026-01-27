@@ -52,11 +52,11 @@ public class ReportsController {
     public ResponseEntity<byte[]> getSeries3(@PathVariable Date fecha1,
                                              @PathVariable Date fecha2,
                                              @PathVariable String titulo) {
-        System.out.println("Obteniendo informe series 1");
+        System.out.println("Obteniendo informe series 3");
         try {
             Map<String, Object> parms = new HashMap<>(); // Aquí van los parámetros/filtros (si son necesarios)
             parms.put("fecha1", fecha1);
-            parms.put("fecha1", fecha2);
+            parms.put("fecha2", fecha2);
             parms.put("titulo", titulo);
             byte[] report = reportService.generarReport("series3", parms); // Indicar nombre del archivo .jasper
             HttpHeaders headers = new HttpHeaders();
